@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tsyringe_1 = require("tsyringe");
+const danhmucController_1 = require("./../controllers/danhmucController");
+const danhmucRouter = (0, express_1.Router)();
+const danhmucController = tsyringe_1.container.resolve(danhmucController_1.DanhMucController);
+danhmucRouter.get('/getbyid/:id', danhmucController.getBranchById.bind(danhmucController));
+danhmucRouter.get('/get-all', danhmucController.getDanhMucAll.bind(danhmucController));
+danhmucRouter.post('/update', danhmucController.updateDanhMuc.bind(danhmucController));
+danhmucRouter.post('/create', danhmucController.createDanhMuc.bind(danhmucController));
+danhmucRouter.delete('/delete/:id', danhmucController.Deletedanhmuc.bind(danhmucController));
+danhmucRouter.get('/timkiem', danhmucController.TimKiem.bind(danhmucController));
+exports.default = danhmucRouter;
